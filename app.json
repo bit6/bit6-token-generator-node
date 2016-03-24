@@ -1,0 +1,8 @@
+{
+  "name": "Bit6 External Authentication",
+  "description": "Sample app to demonstrate user authentication in Bit6",
+  "repository": "https://github.com/bit6/bit6-token-generator-node",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["bit6"],
+  "image": "heroku/nodejs"
+}

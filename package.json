@@ -1,0 +1,23 @@
+{
+  "name": "bit6-token-generator",
+  "version": "1.0.0",
+  "description": "Bit6 external authentication",
+  "main": "lib/bit6-token-generator.js",
+  "scripts": {
+    "start": "node example/index.js"
+  },
+  "dependencies": {
+    "body-parser": "1.x",
+    "dotenv": "2.x",
+    "express": "4.x",
+    "jwt-simple": "0.5.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bit6/bit6-token-generator-node"
+  },
+  "keywords": [
+    "bit6"
+  ],
+  "license": "MIT"
+}
