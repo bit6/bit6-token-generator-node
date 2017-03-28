@@ -5,7 +5,7 @@ A super simple application demonstrating the external authentication in Bit6.
 
 ### Prerequisites
 
-* Get the API Key and Secret at [Bit6 Dashboard](https://dashboard.bit6.com).
+* Get the API Key ID and Secret at [Bit6 Dashboard](https://dashboard.bit6.com).
 
 
 ### Running Locally
@@ -16,11 +16,11 @@ $ cd bit6-token-generator-node
 $ npm install
 ```
 
-Specify your Bit6 API key and secret using environment variables or a local `.env` config file. The file should contain two lines:
+Specify your Bit6 API Key ID and Secret using environment variables or a local `.env` config file. The file should contain two lines:
 
 ```
-BIT6_API_KEY=abc
-BIT6_API_SECRET=xyz
+BIT6_KEY_ID=abc
+BIT6_KEY_SECRET=xyz
 ```
 
 Start the application
@@ -47,29 +47,30 @@ or
 Set Bit6 API key and secret:
 
 ```sh
-$ heroku config:set BIT6_API_KEY=abc
-$ heroku config:set BIT6_API_SECRET=xyz
+$ heroku config:set BIT6_KEY_ID=abc
+$ heroku config:set BIT6_KEY_SECRET=xyz
 ```
 
 
 ### Generating a Token
 
-You would normally generate an external token by doing a POST from your app client to your application server. To simulate this using `curl`:
+You would normally generate a token by doing a POST from your app client to your application server. To simulate this using `curl`:
 
 ```sh
-curl -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"identities": ["usr:john","tel:+12123331234"]}' \
-    http://localhost:5000/auth
+curl -X POST http://localhost:5000/token \
+    -d 'identity=bob1' \
+    -d 'device=web1'
 ```
 
 The response should be a JSON object:
 
 ```json
 {
-    "ext_token": "..."
+    "token": "..."
 }
 ```
+
+You can view the token claims at https://jwt.io.
 
 
 ### Documentation

@@ -1,16 +1,17 @@
 {
   "name": "bit6-token-generator",
-  "version": "1.0.0",
-  "description": "Bit6 external authentication",
+  "version": "2.0.0",
+  "description": "Bit6 authentication token generator",
   "main": "lib/bit6-token-generator.js",
   "scripts": {
     "start": "node example/index.js"
   },
   "dependencies": {
-    "body-parser": "1.x",
-    "dotenv": "2.x",
-    "express": "4.x",
-    "jwt-simple": "0.5.x"
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "jwt-simple": "^0.5.1"
   },
   "repository": {
     "type": "git",
