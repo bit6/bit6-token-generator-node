@@ -58,8 +58,8 @@ You would normally generate a token by doing a POST from your app client to your
 
 ```sh
 curl -X POST http://localhost:5000/token \
-    -d 'identity=bob1' \
-    -d 'device=web1'
+     -d 'identity=bob1' \
+     -d 'device=web1'
 ```
 
 The response should be a JSON object:
