@@ -42,7 +42,9 @@ app.post('/token', function(req, res) {
     // Expire the token in 1 hour (ttl is in seconds)
     const ttl = 60 * 60;
 
-    const token = TokenBuilder.create(keyId, keySecret)
+    // Build the token
+    const token = TokenBuilder.create()
+        .key(keyId, keySecret)
         .env('dev')
         .access('client')
         .grants(grants)
