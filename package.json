@@ -7,10 +7,10 @@
     "start": "node example/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "cors": "^2.8.1",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
-    "express": "^4.15.2",
+    "express": "^4.15.3",
     "jwt-simple": "^0.5.1"
   },
   "repository": {
