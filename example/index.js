@@ -2,13 +2,6 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-
-// Read Bit6 API Key ID and Secret from environment variables
-const keyId = process.env.BIT6_KEY_ID;
-const keySecret = process.env.BIT6_KEY_SECRET;
-
-console.log('Bit6 API Key ID and Secret', keyId, keySecret);
-
 const TokenBuilder = require('../lib/bit6-token-builder');
 
 // Setup Express app
@@ -33,29 +26,35 @@ app.post('/token', function(req, res) {
         console.log(msg);
         return res.status(400).send(msg);
     }
-    // Grant permissions to access Signal, Video, and Chat service
-    const grants = {
-        chat: true,
-        signal: true,
-        video: true
-    };
-    // Expire the token in 1 hour (ttl is in seconds)
-    const ttl = 60 * 60;
 
-    // Build the token
-    const token = TokenBuilder.create()
-        .key(keyId, keySecret)
-        .env('dev')
-        .access('client')
-        .grants(grants)
+    // Start building the token
+    const builder = TokenBuilder.create()
         .identity(identity)
         .device(device)
-        .ttl(ttl)
-        .build()
+        .access('client')
+        // Grant permissions to access Signal, Video, and Chat services
+        .grants({
+            chat: true,
+            signal: true,
+            video: true
+        })
+        // Expire the token in 1 hour (ttl is in seconds)
+        .ttl(60 * 60);
+
+    // Connect to Bit6 'dev' environment. This is a special case for this demo.
+    // This part can be omitted from your code as by default the token is generated
+    // for the production Bit6 API.
+    if (req.query.env === 'dev') {
+        builder.env('dev').key(process.env.BIT6_DEV_KEY_ID, process.env.BIT6_DEV_KEY_SECRET);
+    }
+    // Connect to the default Bit6 production API
+    else {
+        // Read Bit6 API Key ID and Secret from environment variables
+        builder.key(process.env.BIT6_KEY_ID, process.env.BIT6_KEY_SECRET);
+    }
 
     // Response JSON
-    res.send( {token: token} );
-
+    res.send( {token: builder.build()} );
 });
 
 app.get('/', function(req, res) {
