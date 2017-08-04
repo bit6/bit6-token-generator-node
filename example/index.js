@@ -32,9 +32,10 @@ app.post('/token', function(req, res) {
         .identity(identity)
         .device(device)
         .access('client')
-        // Grant permissions to access Signal, Video, and Chat services
+        // Grant permissions to access Chat, Signal, Push, and Video services
         .grants({
             chat: true,
+            push: true,
             signal: true,
             video: true
         })
